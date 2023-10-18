@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Data</title>
+</head>
+<body>
+    <h1>Update Data</h1>
+    <form method="POST">
+        <label for="url">URL:</label>
+        <input type="text" name="url" value="{{ data['url'] }}" required><br>
+        <label for="time">Time (in seconds):</label>
+        <input type="number" name="time" value="{{ data['time'] }}" required><br>
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>

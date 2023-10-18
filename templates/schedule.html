@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <title>Schedule Data Extraction</title>
+</head>
+<body class="bg-gray-200">
+    <div class="container mx-auto p-6">
+        <h1 class="text-2xl font-semibold text-gray-800 mb-4">Schedule Data Extraction - User ID: {{ user_id }}</h1>
+        <form action="{{ url_for('schedule_extraction', user_id=user_id) }}" method="POST">
+            <div class="mb-4">
+                <label for="url" class="block text-gray-700 text-sm font-bold mb-2">URL:</label>
+                <input type="text" name="url" id="url" class="w-full p-2 border rounded-lg">
+            </div>
+            <div class="mb-4">
+                <label for="xpath" class="block text-gray-700 text-sm font-bold mb-2">XPath:</label>
+                <input type="text" name="xpath" id="xpath" class="w-full p-2 border rounded-lg">
+            </div>
+            <div class="mb-4">
+                <label for="time" class="block text-gray-700 text-sm font-bold mb-2">Schedule Time (HH:MM):</label>
+                <input type="text" name="time" id="time" class="w-full p-2 border rounded-lg">
+            </div>
+            <div class="mb-4">
+                <label for="sheet_title" class="block text-gray-700 text-sm font-bold mb-2">Google Sheet Title:</label>
+                <input type="text" name="sheet_title" id="sheet_title" class="w-full p-2 border rounded-lg">
+            </div>
+            <div class="mb-4">
+                <label for="index" class="block text-gray-700 text-sm font-bold mb-2">Text Extraction Index (Optional):</label>
+                <input type="number" name="index" id="index" class="w-full p-2 border rounded-lg">
+            </div>
+            <button type="submit" class="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-400">Schedule</button>
+        </form>
+    </div>
+</body>
+</html>

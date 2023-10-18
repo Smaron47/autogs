@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <title>User Dashboard</title>
+</head>
+<body class="bg-gray-200">
+    <div class="container mx-auto p-6">
+        <h1 class="text-2xl font-semibold text-gray-800 mb-4">User Dashboard - {{ user_id }}</h1>
+        <a href="{{ url_for('get_data', user_id=user_id) }}" class="text-blue-500 hover:underline">View Your Data</a>
+        <br>
+        <a href="{{ url_for('schedule_page', user_id=user_id) }}" class="text-blue-500 hover:underline">Schedule Data Extraction</a>
+        <br>
+        <a href="{{ url_for('get_google_sheet', user_id=user_id) }}" class="text-blue-500 hover:underline">View Google Sheet</a>
+    </div>
+</body>
+</html>
