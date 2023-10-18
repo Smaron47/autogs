@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Page Text Extractor</title>
+</head>
+<body>
+    <h1>Web Page Text Extractor</h1>
+    <form id="input-form">
+        <label for="url">Enter URL:</label>
+        <input type="text" id="url" placeholder="https://example.com" required>
+        <br>
+        <label for="xpath">Enter XPath Expression:</label>
+        <input type="text" id="xpath" placeholder="//h1" required>
+        <br>
+        <button type="button" id="extract-button">Extract Text</button>
+    </form>
+    <div id="result">
+        <h2>Extracted Text:</h2>
+        <div id="extracted-text"></div>
+    </div>
+
+    <script>
+        document.getElementById("extract-button").addEventListener("click", function() {
+            const url = document.getElementById("url").value;
+            const xpath = document.getElementById("xpath").value;
+            const extractedText = document.getElementById("extracted-text");
+
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(data, "text/html");
+                    const result = xmlDoc.evaluate(xpath, xmlDoc, null, XPathResult.ANY_TYPE, null);
+
+                    let text = '';
+                    let node;
+                    while ((node = result.iterateNext())) {
+                        text += node.textContent + '\n';
+                    }
+
+                    extractedText.textContent = text.trim();
+                })
+                .catch(error => {
+                    extractedText.textContent = "An error occurred: " + error;
+                });
+        });
+    </script>
+</body>
+</html>
