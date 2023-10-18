@@ -4,3 +4,4 @@ gspread==4.1.0
 google-auth==2.6.1
 lxml==4.6.3
 selenium==4.0.0
+gunicorn
