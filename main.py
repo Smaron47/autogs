@@ -37,6 +37,7 @@ except FileNotFoundError:
 def scrape_and_update_sheet(url, xpath, index):
     # Create a headless Selenium WebDriver
     options = webdriver.ChromeOptions()
+    options.add_argument("--headless")
     driver = webdriver.Chrome(options=options)
 
     try:
