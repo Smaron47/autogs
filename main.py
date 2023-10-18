@@ -112,5 +112,11 @@ def view_schedules():
     schedules = [{'url': job.args[0], 'xpath': job.args[1], 'index': job.args[2], 'time': str(job.trigger.fields[1])} for job in scheduler.get_jobs()]
     return jsonify({'schedules': schedules})
 
+@app.route("/fuck", methods=['GET','POST'])
+def fuck():
+    return render_template('fuck.html')
+
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
