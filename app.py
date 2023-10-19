@@ -29,20 +29,26 @@ def init_google():
     return sheet
 
 
-def append_column(sheet, data):
+def append_column(sheet, data, url):
     # Get the values in the first row to determine the last column with text
-    first_row = sheet.row_values(2)
+    
+    
+    
+
+    cell = sheet.find(url)
+    
+    first_row = sheet.row_values(cell.row)
     last_col_index = len(first_row) + 1
 
     # Append a new column at the end
     sheet.add_cols(1)
+    sheet.update_cell(first_row,last_col_index,data)
 
     # Update the header cell in the new column
     #sheet.update_cell(1, last_col_index, datetime.today())
 
     # Update the cells in the new column with data
-    for i, data_row in enumerate(data):
-        sheet.update_cell(i + 2, last_col_index, data_row)
+
 
 # Function to check urls_data.json and update the Google Sheet
 def update_google_sheet():
@@ -65,7 +71,7 @@ def update_google_sheet():
             print(f"URL '{url}' not found in the Google Sheet")
             continue
 
-        append_column(sheet,data_value)
+        append_column(sheet,data_value,url)
 
 
 # Initialize a BackgroundScheduler
@@ -149,4 +155,4 @@ def upload_pre_json():
         return jsonify({'error': f'Error while processing JSON data: {str(e)}'}), 500
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
